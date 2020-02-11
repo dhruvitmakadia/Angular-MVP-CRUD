@@ -11,23 +11,23 @@
         <tr>
             <th (click)="sortData('name')">Full Name
                 <span class="glyphicon sort-icon" *ngIf="key =='name'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
             <th (click)="sortData('email')">Email
                 <span class="glyphicon sort-icon" *ngIf="key =='email'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
             <th (click)="sortData('mobile')">Mobile
                 <span class="glyphicon sort-icon" *ngIf="key =='mobile'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
             <th (click)="sortData('addresses')">Address
                 <span class="glyphicon sort-icon" *ngIf="key =='addresses'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
             <th (click)="sortData('department')">Department
                 <span class="glyphicon sort-icon" *ngIf="key =='department'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
             </th>
             <th>Action</th>
         </tr>
@@ -35,7 +35,8 @@
             <td>{{employee.name}}</td>
             <td>{{employee.email}}</td>
             <td>{{employee.mobile}}</td>
-            <td><span *ngFor="let address of employee.addresses">=> {{address.street}} {{address.city}} {{address.state}}
+            <td><span *ngFor="let address of employee.addresses">=> {{address.street}} {{address.city}}
+                    {{address.state}}
                     {{address.postcode}} <br></span></td>
             <td>{{employee.department}}</td>
             <td>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Employee } from '../../employee.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,11 @@ import { Location } from '@angular/common';
 export class EmployeeFormPresenterService {
 
   constructor(
-    private fb: FormBuilder,
-    private router: ActivatedRoute,
-    private location: Location,
+    private fb: FormBuilder
   ) { }
 
-  employeeAddForm = this.fb.group({
+  // Initiate employee form
+  employeeForm = this.fb.group({
     name: ['', [Validators.required]],
     email: ['', Validators.required],
     mobile: ['', [Validators.required]],
@@ -43,7 +42,7 @@ export class EmployeeFormPresenterService {
    * To add more address to form
    */
   addAddress() {
-    const control = this.employeeAddForm.controls.addresses as FormArray;
+    const control = this.employeeForm.controls.addresses as FormArray;
     control.push(this.initAddress());
   }
 
@@ -52,8 +51,20 @@ export class EmployeeFormPresenterService {
    * @param i index of address contrrol to remove
    */
   removeAddress(i: number) {
-    const control = this.employeeAddForm.controls.addresses as FormArray;
+    const control = this.employeeForm.controls.addresses as FormArray;
     control.removeAt(i);
   }
 
+  /**
+   * To reset form and its controls
+   * @param employee employee data to reset
+   */
+  resetForm(employee: Employee) {
+    this.employeeForm.reset();
+    if (employee) {
+      for (let i = employee.addresses.length; i > 1; i--) {
+        this.removeAddress(i - 1);
+      }
+    }
+  }
 }

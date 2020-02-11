@@ -27,32 +27,32 @@ export class EmployeeService {
    * get employee id and return data of that id
    * @param id employee id for getting single record
    */
-  getEmployee(id): Observable<Employee> {
+  getEmployee(id: string): Observable<Employee> {
     return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}/${id}`);
   }
 
   /**
    * get employee data and add new record to database
-   * @param data employee data for insert operartion
+   * @param employee employee data for insert operartion
    */
-  addEmployee(data) {
-    this.httpClient.post(`${this.API_EMPLOYEE}`, data).subscribe();
+  addEmployee(employee: Employee) {
+    this.httpClient.post(`${this.API_EMPLOYEE}`, employee).subscribe();
   }
 
   /**
    * get employee data and id for update particular record in database
    * @param id employee id for update operation
-   * @param data emploee data for update operation
+   * @param employee emploee data for update operation
    */
-  updateEmployee(id, data) {
-    this.httpClient.patch(`${this.API_EMPLOYEE}/${id}`, data).subscribe();
+  updateEmployee(id: string, employee: Employee) {
+    this.httpClient.patch(`${this.API_EMPLOYEE}/${id}`, employee).subscribe();
   }
 
   /**
    * get employee id and delete record from database
    * @param id employee id for delete operation
    */
-  deleteEmployee(id) {
+  deleteEmployee(id: number) {
     this.httpClient.delete(`${this.API_EMPLOYEE}/${id}`).subscribe();
   }
 
@@ -67,11 +67,11 @@ export class EmployeeService {
    * To get search employee data
    * @param query search string
    */
-  searchEmployees(query): Observable<Employee> {
+  searchEmployees(query: string): Observable<Employee> {
     return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?q=${query}`);
   }
 
-  sortEmployees(key) {
+  sortEmployees(key: string) {
     return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?_sort=${key}&_order=asc`);
   }
 }

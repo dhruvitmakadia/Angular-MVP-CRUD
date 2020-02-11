@@ -10,8 +10,8 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListContainerComponent implements OnInit {
 
-  // Store employee data
-  employees$: Observable<Employee>;
+  // To store employees detail
+  public employees$: Observable<Employee>;
 
   constructor(
     private api: EmployeeService
@@ -21,16 +21,28 @@ export class EmployeeListContainerComponent implements OnInit {
     this.employees$ = this.api.getEmployees();
   }
 
-  deleteEmployee(event) {
-    this.api.deleteEmployee(event);
+  /**
+   * get employee id and delete record
+   * @param id employee id to delete
+   */
+  deleteEmployee(id: number) {
+    this.api.deleteEmployee(id);
     this.employees$ = this.api.getEmployees();
   }
 
-  search(event) {
-    this.employees$ = this.api.searchEmployees(event);
+  /**
+   * get search string and get searched data
+   * @param query search string
+   */
+  search(query: string) {
+    this.employees$ = this.api.searchEmployees(query);
   }
 
-  sort(event) {
-    this.employees$ = this.api.sortEmployees(event);
+  /**
+   * get field name and sort data
+   * @param key field name to sort
+   */
+  sort(key: string) {
+    this.employees$ = this.api.sortEmployees(key);
   }
 }
