@@ -1,0 +1,11 @@
+export class Employee {
+    id: number;
+    name: string;
+    email: string;
+    mobile: number;
+    addresses: Array<any>;
+    gender: string;
+    department: string;
+    hireDate: Date;
+    permanentEmployee: boolean;
+}

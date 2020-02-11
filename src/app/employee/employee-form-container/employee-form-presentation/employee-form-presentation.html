@@ -1,0 +1,91 @@
+<mat-card class="card">
+    <mat-card-title style="text-align: center; font-size: 35px;">Employee Detail</mat-card-title>
+    <div>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <label>Full Name</label>
+            <div *ngIf="ef.name.invalid && (ef.name.dirty || ef.name.touched)" class="error">
+                <div *ngIf="ef.name.errors.required">
+                    Name is required.
+                </div>
+            </div>
+            <input type="text" formControlName="name" placeholder="Your name..">
+
+            <label>Email</label>
+            <div *ngIf="ef.email.invalid && (ef.email.dirty || ef.email.touched)" class="error">
+                <div *ngIf="ef.email.errors.required">
+                    Email is required.
+                </div>
+            </div>
+            <input type="text" formControlName="email" placeholder="Your email..">
+
+            <label>Mobile</label>
+            <div *ngIf="ef.mobile.invalid && (ef.mobile.dirty || ef.mobile.touched)" class="error">
+                <div *ngIf="ef.mobile.errors.required">
+                    Mobile is required.
+                </div>
+            </div>
+            <input type="text" formControlName="mobile" placeholder="Your mobile..">
+
+            <hr>
+            <div formArrayName="addresses">
+                <div *ngFor="let address of employeeForm.controls.addresses.controls; let i=index">
+                    <div>
+                        <b><span>Address {{i + 1}}</span></b>
+                        <span *ngIf="employeeForm.controls.addresses.controls.length > 1" class='close'
+                            (click)="removeAddress(i)">&times;
+                        </span>
+                    </div>
+
+                    <div [formGroupName]="i">
+                        <div class="row">
+                            <div class="column">
+                                <label>Street</label>
+                                <input type="text" formControlName="street" placeholder="Your street..">
+                            </div>
+                            <div class="column">
+                                <label>City</label>
+                                <input type="text" formControlName="city" placeholder="Your city..">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <label>State</label>
+                                <input type="text" formControlName="state" placeholder="Your state..">
+                            </div>
+                            <div class="column">
+                                <label>postcode</label>
+                                <input type="text" formControlName="postcode" placeholder="Your postcode..">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span style="font-size: medium; color: purple; cursor: pointer;" (click)="addAddress()"> + Add New
+                    Address</span>
+            </div>
+            <hr>
+            <label>Gender</label>
+            <br>
+            <input type="radio" formControlName="gender" value="male">Male
+            <input type="radio" formControlName="gender" value="female">Female
+            <input type="radio" formControlName="gender" value="other">Other
+            <br><br>
+
+            <label>Department</label>
+            <select formControlName="department" placeholder="Department">
+                <option *ngFor='let department of departments' value="{{department}}">{{department}}</option>
+            </select>
+
+            <label>Hire Date</label>
+            <input type="date" formControlName="hireDate">
+
+            <br>
+            <input type="checkbox" formControlName="permanentEmployee">Permanent Employee
+
+            <input type="submit" [disabled]="!employeeForm.valid" value="Submit">
+            <input type="reset" value="Clear">
+        </form>
+    </div>
+</mat-card>
+<br><br>
+<br><br>
+<br><br>

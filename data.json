@@ -1,0 +1,243 @@
+{
+  "department": [
+    "Developer",
+    "Accountant",
+    "Software Engineer"
+  ],
+  "employee": [
+    {
+      "name": "Dhruvit",
+      "email": "dhruvit@gmail.com",
+      "mobile": "9426877444",
+      "addresses": [
+        {
+          "street": "Mograwadi",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        },
+        {
+          "street": "Bechar Road",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Developer",
+      "hireDate": "2019-12-02",
+      "permanentEmployee": true,
+      "id": 1
+    },
+    {
+      "name": "Amit",
+      "email": "amit@gmail.com",
+      "mobile": "8985698745",
+      "addresses": [
+        {
+          "street": "Gundlav",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Software Engineer",
+      "hireDate": "2020-01-16",
+      "permanentEmployee": false,
+      "id": 2
+    },
+    {
+      "name": "Kiran",
+      "email": "kiran@gmail.com",
+      "mobile": "8547569325",
+      "addresses": [
+        {
+          "street": "Khergam",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Accountant",
+      "hireDate": "2020-01-28",
+      "permanentEmployee": true,
+      "id": 3
+    },
+    {
+      "name": "Aastha",
+      "email": "aastha@gmail.com",
+      "mobile": "7897895463",
+      "addresses": [
+        {
+          "street": "Soni wad",
+          "city": "Bilimora",
+          "state": "Gujarat",
+          "postcode": "3658961"
+        }
+      ],
+      "gender": "female",
+      "department": "Accountant",
+      "hireDate": "2020-02-11",
+      "permanentEmployee": true,
+      "id": 4
+    },
+    {
+      "name": "Tapas",
+      "email": "tapas@gmail.com",
+      "mobile": "8877965844",
+      "addresses": [
+        {
+          "street": "Halar Road",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Developer",
+      "hireDate": "2020-01-30",
+      "permanentEmployee": false,
+      "id": 5
+    },
+    {
+      "name": "Bhargav",
+      "email": "bhargav@gmail.com",
+      "mobile": "8787878787",
+      "addresses": [
+        {
+          "street": "Tithal",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Software Engineer",
+      "hireDate": "2020-01-30",
+      "permanentEmployee": true,
+      "id": 6
+    },
+    {
+      "name": "Shiv",
+      "email": "shiv@gmail.com",
+      "mobile": "9875858745",
+      "addresses": [
+        {
+          "street": "Halar",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Accountant",
+      "hireDate": "2020-01-26",
+      "permanentEmployee": false,
+      "id": 7
+    },
+    {
+      "name": "Samip",
+      "email": "samip@gmail.com",
+      "mobile": "7485963214",
+      "addresses": [
+        {
+          "street": "Abrama Road",
+          "city": "Valsad",
+          "state": "Gujarat",
+          "postcode": "396001"
+        }
+      ],
+      "gender": "male",
+      "department": "Software Engineer",
+      "hireDate": "2020-02-11",
+      "permanentEmployee": false,
+      "id": 8
+    },
+    {
+      "name": "qqq",
+      "email": "qqq",
+      "mobile": "qqq",
+      "addresses": [
+        {
+          "street": "qqq",
+          "city": "qqq",
+          "state": "qqq",
+          "postcode": "qqq"
+        }
+      ],
+      "gender": "male",
+      "department": "Developer",
+      "hireDate": "2020-02-16",
+      "permanentEmployee": true,
+      "id": 10
+    },
+    {
+      "name": "aaabbb",
+      "email": "aaa",
+      "mobile": "aaa",
+      "addresses": [
+        {
+          "street": "aaa",
+          "city": "aaa",
+          "state": "aaa",
+          "postcode": "aaaa"
+        }
+      ],
+      "gender": "other",
+      "department": "Accountant",
+      "hireDate": "2020-02-05",
+      "permanentEmployee": true,
+      "id": 11
+    },
+    {
+      "name": "aaabbb",
+      "email": "aaabbb",
+      "mobile": "aaa",
+      "addresses": [
+        {
+          "street": "aaa",
+          "city": "aaa",
+          "state": "aaaaaaaa",
+          "postcode": "aaaa"
+        }
+      ],
+      "gender": "other",
+      "department": "Accountant",
+      "hireDate": "2020-02-05",
+      "permanentEmployee": true,
+      "id": 12
+    },
+    {
+      "name": "aaabbb111",
+      "email": "aaabbb111",
+      "mobile": "aaa",
+      "addresses": [
+        {
+          "street": "aaa",
+          "city": "aaa",
+          "state": "aaaaaaaa",
+          "postcode": "aaaa"
+        },
+        {
+          "street": "aa",
+          "city": "aa",
+          "state": "aa",
+          "postcode": "aa"
+        },
+        {
+          "street": "aa",
+          "city": "aa",
+          "state": "aa",
+          "postcode": "aa"
+        }
+      ],
+      "gender": "female",
+      "department": "Accountant",
+      "hireDate": "2020-02-05",
+      "permanentEmployee": true,
+      "id": 13
+    }
+  ]
+}
