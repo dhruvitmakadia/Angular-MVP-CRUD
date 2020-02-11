@@ -10,8 +10,12 @@ import { EmployeeService } from '../employee.service';
   styles: []
 })
 export class EmployeeFormContainerComponent implements OnInit {
+
+  // To store departments data
   public departments$: Observable<Array<string>>;
+  // To store employee data for edit
   public employee$: Observable<Employee>;
+  // To store id from route
   private id: string;
 
   constructor(
@@ -27,11 +31,19 @@ export class EmployeeFormContainerComponent implements OnInit {
     }
   }
 
-  addEmployee(event) {
-    this.api.addEmployee(event);
+  /**
+   * get data and add new record
+   * @param employee data to add new record
+   */
+  addEmployee(employee: Employee) {
+    this.api.addEmployee(employee);
   }
 
-  updateEmployee(event) {
-    this.api.updateEmployee(this.id, event);
+  /**
+   * get data and update that record
+   * @param employee data to update record
+   */
+  updateEmployee(employee: Employee) {
+    this.api.updateEmployee(this.id, employee);
   }
 }

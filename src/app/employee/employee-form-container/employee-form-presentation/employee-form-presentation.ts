@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
 import { Employee } from '../../employee.model';
 import { EmployeeFormPresenterService } from '../employee-form-presenter/employee-form-presenter';
 import { Router } from '@angular/router';
@@ -13,7 +12,7 @@ export class EmployeeFormPresentationComponent implements OnInit, OnChanges, OnD
 
   // get department data from container component
   @Input() departments: Array<string>;
-  // get department data from container component
+  // get employee data from container component
   @Input() employee: Employee;
   // send data to container component for add
   @Output() add = new EventEmitter<Employee>();
@@ -25,10 +24,10 @@ export class EmployeeFormPresentationComponent implements OnInit, OnChanges, OnD
     private presenter: EmployeeFormPresenterService
   ) { }
 
-  employeeForm = this.presenter.employeeAddForm;
+  // Initiate employee form group
+  employeeForm = this.presenter.employeeForm;
 
   ngOnInit() {
-    console.log('start');
   }
 
   ngOnChanges() {
@@ -59,20 +58,21 @@ export class EmployeeFormPresentationComponent implements OnInit, OnChanges, OnD
   }
 
   /**
-   * To emit sbmit event to container
+   * To emit submit event to container and reset form
    */
   onSubmit() {
     if (this.employee) {
       this.update.emit(this.employeeForm.value);
+      this.presenter.resetForm(this.employee);
       this.router.navigate(['employee/list']);
     } else {
       this.add.emit(this.employeeForm.value);
+      this.presenter.resetForm(this.employee);
       this.router.navigate(['employee/list']);
     }
   }
 
   ngOnDestroy() {
-    this.employeeForm.reset();
-    console.log('end');
+    this.presenter.resetForm(this.employee);
   }
 }

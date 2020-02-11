@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class EmployeeListPresentationComponent implements OnInit {
 
-  query: string;
-  key = 'name';
-  reverse = false;
+  // To store search query
+  public query: string;
+  // To store name of field to sort
+  public key: string;
+  // flag to specify asc/desc
+  public reverse = false;
 
   constructor(
     private router: Router
@@ -66,7 +69,7 @@ export class EmployeeListPresentationComponent implements OnInit {
    * take field name and display sort sign according to flag
    * @param key take field name to sort
    */
-  sortData(key) {
+  sortData(key: string) {
     this.key = key;
     this.reverse = !this.reverse;
     this.sort.emit(key);
