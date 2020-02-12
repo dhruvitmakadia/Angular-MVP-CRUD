@@ -71,7 +71,12 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?q=${query}`);
   }
 
-  sortEmployees(key: string) {
-    return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?_sort=${key}&_order=asc`);
+  /**
+   * Get field and order type and return sorted data
+   * @param key field name to sort
+   * @param order order type asc/desc
+   */
+  sortEmployees(key: string, order: string) {
+    return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?_sort=${key}&_order=${order}`);
   }
 }

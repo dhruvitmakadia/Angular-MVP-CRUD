@@ -12,8 +12,8 @@ export class EmployeeListPresentationComponent implements OnInit {
 
   // To store search query
   public query: string;
-  // To store name of field to sort
-  public key: string;
+  // To store name of field to sort by default name field
+  public key = 'name';
   // flag to specify asc/desc
   public reverse = false;
 
@@ -29,8 +29,12 @@ export class EmployeeListPresentationComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
   // send field to container component for sort
   @Output() sort = new EventEmitter<string>();
+  // send order to container component for sort
+  @Output() order = new EventEmitter<boolean>();
 
   ngOnInit() {
+    this.order.emit(this.reverse);
+    this.sort.emit(this.key);
   }
 
   /**
@@ -72,6 +76,7 @@ export class EmployeeListPresentationComponent implements OnInit {
   sortData(key: string) {
     this.key = key;
     this.reverse = !this.reverse;
+    this.order.emit(this.reverse);
     this.sort.emit(key);
   }
 }

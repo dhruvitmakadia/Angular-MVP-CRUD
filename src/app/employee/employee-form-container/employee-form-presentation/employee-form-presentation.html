@@ -7,8 +7,11 @@
                 <div *ngIf="ef.name.errors.required">
                     Name is required.
                 </div>
+                <div *ngIf="ef.name.errors.minlength">
+                    Name must be at least 4 characters long.
+                </div>
             </div>
-            <input type="text" formControlName="name" placeholder="Your name..">
+            <input type="text" formControlName="name" placeholder="Your name.." appAutofocus>
 
             <label>Email</label>
             <div *ngIf="ef.email.invalid && (ef.email.dirty || ef.email.touched)" class="error">
@@ -23,10 +26,17 @@
                 <div *ngIf="ef.mobile.errors.required">
                     Mobile is required.
                 </div>
+                <div *ngIf="ef.mobile.errors.minlength">
+                    Mobile Number Is 10 Digit Only.
+                </div>
+                <div *ngIf="ef.mobile.errors.maxlength">
+                    Mobile Number Is 10 Digit Only.
+                </div>
             </div>
-            <input type="text" formControlName="mobile" placeholder="Your mobile..">
+            <input type="text" formControlName="mobile" placeholder="Your mobile.." appNumberOnly>
 
             <hr>
+            
             <div formArrayName="addresses">
                 <div *ngFor="let address of employeeForm.controls.addresses.controls; let i=index">
                     <div>

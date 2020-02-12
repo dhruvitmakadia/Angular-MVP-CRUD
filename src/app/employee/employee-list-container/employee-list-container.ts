@@ -12,6 +12,8 @@ export class EmployeeListContainerComponent implements OnInit {
 
   // To store employees detail
   public employees$: Observable<Employee>;
+  // To store sort order type
+  public orderAs: string;
 
   constructor(
     private api: EmployeeService
@@ -39,10 +41,22 @@ export class EmployeeListContainerComponent implements OnInit {
   }
 
   /**
+   * get flag and store in variable
+   * @param order flag to specify sorting order
+   */
+  order(order: boolean) {
+    if (order) {
+      this.orderAs = 'desc';
+    } else {
+      this.orderAs = 'asc';
+    }
+  }
+
+  /**
    * get field name and sort data
    * @param key field name to sort
    */
   sort(key: string) {
-    this.employees$ = this.api.sortEmployees(key);
+    this.employees$ = this.api.sortEmployees(key, this.orderAs);
   }
 }

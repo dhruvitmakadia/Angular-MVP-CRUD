@@ -14,16 +14,16 @@ export class EmployeeFormPresenterService {
 
   // Initiate employee form
   employeeForm = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.minLength(4)]],
     email: ['', Validators.required],
-    mobile: ['', [Validators.required]],
+    mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     addresses: this.fb.array([
       this.initAddress(),
     ]),
     gender: ['', Validators.required],
     department: ['', Validators.required],
     hireDate: ['', Validators.required],
-    permanentEmployee: [false, Validators.required]
+    permanentEmployee: [false]
   });
 
   /**
