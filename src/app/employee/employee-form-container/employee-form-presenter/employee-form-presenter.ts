@@ -3,9 +3,8 @@ import { Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Employee } from '../../employee.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class EmployeeFormPresenterService {
 
   constructor(
@@ -53,18 +52,5 @@ export class EmployeeFormPresenterService {
   removeAddress(i: number) {
     const control = this.employeeForm.controls.addresses as FormArray;
     control.removeAt(i);
-  }
-
-  /**
-   * To reset form and its controls
-   * @param employee employee data to reset
-   */
-  resetForm(employee: Employee) {
-    this.employeeForm.reset();
-    if (employee) {
-      for (let i = employee.addresses.length; i > 1; i--) {
-        this.removeAddress(i - 1);
-      }
-    }
   }
 }

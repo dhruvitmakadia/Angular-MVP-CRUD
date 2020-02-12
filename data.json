@@ -156,58 +156,28 @@
       "id": 8
     },
     {
-      "name": "ssss",
-      "email": "sssss",
+      "name": "aaaa",
+      "email": "aaa",
       "mobile": "1111111111",
       "addresses": [
         {
-          "street": "sss",
-          "city": "sss",
-          "state": "sss",
-          "postcode": "sss"
+          "street": "aa",
+          "city": "aa",
+          "state": "aa",
+          "postcode": "aa"
         },
         {
-          "street": "sdffg",
-          "city": "rfgfg",
-          "state": "fgfg",
-          "postcode": "fg"
-        },
-        {
-          "street": "cxvcx",
-          "city": "xcvxcv",
-          "state": "cvxcvx",
-          "postcode": "cvxcv"
+          "street": "aa",
+          "city": "aa",
+          "state": "aa",
+          "postcode": "aa"
         }
       ],
       "gender": "female",
-      "department": "Software Engineer",
-      "hireDate": "2020-01-28",
-      "permanentEmployee": null,
+      "department": "Developer",
+      "hireDate": "2020-02-04",
+      "permanentEmployee": false,
       "id": 9
-    },
-    {
-      "name": "asdas",
-      "email": "sdfsdfsd",
-      "mobile": "2323232323",
-      "addresses": [
-        {
-          "street": "vsxvxc",
-          "city": "vxcvxcv",
-          "state": "cvxcv",
-          "postcode": "xcvxc"
-        },
-        {
-          "street": "cvxcvx",
-          "city": "xcfvxc",
-          "state": "xcvxcv",
-          "postcode": "xcvxc"
-        }
-      ],
-      "gender": "female",
-      "department": "Software Engineer",
-      "hireDate": "2020-02-03",
-      "permanentEmployee": null,
-      "id": 10
     }
   ]
 }

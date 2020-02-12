@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Employee } from '../../employee.model';
 import { EmployeeFormPresenterService } from '../employee-form-presenter/employee-form-presenter';
 import { Router } from '@angular/router';
@@ -6,9 +6,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-form-presentation-ui',
   templateUrl: './employee-form-presentation.html',
-  styleUrls: ['./employee-form-presentation.scss']
+  styleUrls: ['./employee-form-presentation.scss'],
+  providers: [EmployeeFormPresenterService]
 })
-export class EmployeeFormPresentationComponent implements OnInit, OnChanges, OnDestroy {
+export class EmployeeFormPresentationComponent implements OnInit, OnChanges {
 
   // get department data from container component
   @Input() departments: Array<string>;
@@ -62,16 +63,8 @@ export class EmployeeFormPresentationComponent implements OnInit, OnChanges, OnD
   onSubmit() {
     if (this.employee) {
       this.update.emit(this.employeeForm.value);
-      this.presenter.resetForm(this.employee);
-      this.router.navigate(['employee/list']);
     } else {
       this.add.emit(this.employeeForm.value);
-      this.presenter.resetForm(this.employee);
-      this.router.navigate(['employee/list']);
     }
-  }
-
-  ngOnDestroy() {
-    this.presenter.resetForm(this.employee);
   }
 }

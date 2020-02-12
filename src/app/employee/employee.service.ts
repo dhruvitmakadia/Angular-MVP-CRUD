@@ -4,9 +4,8 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Employee } from './employee.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class EmployeeService {
 
   // API URL for employee data
@@ -19,8 +18,8 @@ export class EmployeeService {
   /**
    * To get all employee data
    */
-  getEmployees(): Observable<Employee> {
-    return this.httpClient.get<Employee>(this.API_EMPLOYEE);
+  getEmployees(): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(this.API_EMPLOYEE);
   }
 
   /**
@@ -35,8 +34,8 @@ export class EmployeeService {
    * get employee data and add new record to database
    * @param employee employee data for insert operartion
    */
-  addEmployee(employee: Employee) {
-    this.httpClient.post(`${this.API_EMPLOYEE}`, employee).subscribe();
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.httpClient.post<Employee>(`${this.API_EMPLOYEE}`, employee);
   }
 
   /**
@@ -44,16 +43,16 @@ export class EmployeeService {
    * @param id employee id for update operation
    * @param employee emploee data for update operation
    */
-  updateEmployee(id: string, employee: Employee) {
-    this.httpClient.patch(`${this.API_EMPLOYEE}/${id}`, employee).subscribe();
+  updateEmployee(id: string, employee: Employee): Observable<Employee> {
+    return this.httpClient.patch<Employee>(`${this.API_EMPLOYEE}/${id}`, employee);
   }
 
   /**
    * get employee id and delete record from database
    * @param id employee id for delete operation
    */
-  deleteEmployee(id: number) {
-    this.httpClient.delete(`${this.API_EMPLOYEE}/${id}`).subscribe();
+  deleteEmployee(id: number): Observable<Employee> {
+    return this.httpClient.delete<Employee>(`${this.API_EMPLOYEE}/${id}`);
   }
 
   /**
@@ -67,8 +66,8 @@ export class EmployeeService {
    * To get search employee data
    * @param query search string
    */
-  searchEmployees(query: string): Observable<Employee> {
-    return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?q=${query}`);
+  searchEmployees(query: string): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(`${this.API_EMPLOYEE}?q=${query}`);
   }
 
   /**
@@ -76,7 +75,7 @@ export class EmployeeService {
    * @param key field name to sort
    * @param order order type asc/desc
    */
-  sortEmployees(key: string, order: string) {
-    return this.httpClient.get<Employee>(`${this.API_EMPLOYEE}?_sort=${key}&_order=${order}`);
+  sortEmployees(key: string, order: string): Observable<Employee[]> {
+    return this.httpClient.get<Employee[]>(`${this.API_EMPLOYEE}?_sort=${key}&_order=${order}`);
   }
 }
