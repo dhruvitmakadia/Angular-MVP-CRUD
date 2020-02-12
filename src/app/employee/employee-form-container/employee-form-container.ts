@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../employee.model';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../employee.service';
@@ -20,13 +20,14 @@ export class EmployeeFormContainerComponent implements OnInit {
 
   constructor(
     private api: EmployeeService,
-    private router: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.departments$ = this.api.getDepartments();
-    if (this.router.snapshot.paramMap.get('id')) {
-      this.id = this.router.snapshot.paramMap.get('id');
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.id = this.route.snapshot.paramMap.get('id');
       this.employee$ = this.api.getEmployee(this.id);
     }
   }
@@ -36,7 +37,12 @@ export class EmployeeFormContainerComponent implements OnInit {
    * @param employee data to add new record
    */
   addEmployee(employee: Employee) {
-    this.api.addEmployee(employee);
+    if (this.api.addEmployee(employee).subscribe()) {
+      alert('New Record Added Successfully...');
+      this.router.navigate(['employee/list']);
+    } else {
+      alert('Something Went Wrong Please Try Again...');
+    }
   }
 
   /**
@@ -44,6 +50,11 @@ export class EmployeeFormContainerComponent implements OnInit {
    * @param employee data to update record
    */
   updateEmployee(employee: Employee) {
-    this.api.updateEmployee(this.id, employee);
+    if (this.api.updateEmployee(this.id, employee).subscribe()) {
+      alert('Record Updated Successfully...');
+      this.router.navigate(['employee/list']);
+    } else {
+      alert('Something Went Wrong Please Try Again...');
+    }
   }
 }

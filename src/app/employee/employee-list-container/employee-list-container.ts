@@ -11,7 +11,7 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeListContainerComponent implements OnInit {
 
   // To store employees detail
-  public employees$: Observable<Employee>;
+  public employees$: Observable<Employee[]>;
   // To store sort order type
   public orderAs: string;
 
@@ -28,8 +28,11 @@ export class EmployeeListContainerComponent implements OnInit {
    * @param id employee id to delete
    */
   deleteEmployee(id: number) {
-    this.api.deleteEmployee(id);
-    this.employees$ = this.api.getEmployees();
+    if (this.api.deleteEmployee(id).subscribe()) {
+      alert('Recored Deleted Successfully...');
+      this.employees$ = this.api.getEmployees();
+    } else {
+    }
   }
 
   /**

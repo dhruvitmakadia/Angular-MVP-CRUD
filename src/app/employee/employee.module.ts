@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { EmployeeService } from './employee.service';
 
 
 @NgModule({
@@ -36,6 +37,9 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule
+  ],
+  providers: [
+    EmployeeService
   ]
 })
 export class EmployeeModule { }

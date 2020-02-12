@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-list-presentation-ui',
   templateUrl: './employee-list-presentation.html',
-  styleUrls: ['./employee-list-presentation.scss']
+  styleUrls: ['./employee-list-presentation.scss'],
+  providers: [EmployeeListPresenterService]
 })
 export class EmployeeListPresentationComponent implements OnInit {
 
