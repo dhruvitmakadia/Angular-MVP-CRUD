@@ -9,3 +9,10 @@ export class Employee {
     hireDate: Date;
     permanentEmployee: boolean;
 }
+
+export class Address {
+    street: string;
+    city: string;
+    state: string;
+    passcode: number;
+}
