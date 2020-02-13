@@ -1,0 +1,3 @@
+<app-employee-form-presentation-ui [departments]='departments$ | async' [employee]='employee$ | async'
+    (add)='addEmployee($event)' (update)='updateEmployee($event)'>
+</app-employee-form-presentation-ui>

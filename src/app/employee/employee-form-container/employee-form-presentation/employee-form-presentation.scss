@@ -1,0 +1,70 @@
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
+input[type="text"],
+select,
+input[type="date"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="text"]:focus,
+select:focus,
+input[type="date"]:focus {
+  box-shadow: 0 0 5px purple;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="reset"] {
+  width: 100%;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(172, 2, 172);
+}
+input[type="reset"]:hover {
+  background-color: rgb(172, 2, 172);
+}
+input[type="submit"]:disabled {
+  background-color: rgb(161, 91, 161);
+  cursor: not-allowed;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+}
+.card {
+  top: 7%;
+  width: 50%;
+  left: 25%;
+  background-color: lightcyan;
+  border-radius: 15px;
+  border: 1px solid;
+  padding: 15px;
+  box-shadow: 5px 10px rgb(190, 166, 190);
+}

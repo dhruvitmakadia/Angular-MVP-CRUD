@@ -1,0 +1,59 @@
+<mat-card class="card">
+    <mat-card-title style="text-align: center; font-size: 35px;">Employee List</mat-card-title>
+    <a mat-raised-button routerLink='/employee/add' class="button"><i class="glyphicon glyphicon-plus"></i>
+        <b> Add New</b></a>
+    <div class="wrap">
+        <input id="search" [(ngModel)]='query' (keyup)='searchData()' type="text" placeholder="What're we looking for ?"
+            style="font-size: 20px;">
+        <input id="search_submit" value="Rechercher" type="submit" style="font-size: 20px;">
+    </div>
+    <table>
+        <tr>
+            <th (click)="sortData('name')">Full Name
+                <span class="glyphicon sort-icon" *ngIf="key =='name'"
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sortData('email')">Email
+                <span class="glyphicon sort-icon" *ngIf="key =='email'"
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sortData('mobile')">Mobile
+                <span class="glyphicon sort-icon" *ngIf="key =='mobile'"
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sortData('addresses')">Address
+                <span class="glyphicon sort-icon" *ngIf="key =='addresses'"
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th (click)="sortData('department')">Department
+                <span class="glyphicon sort-icon" *ngIf="key =='department'"
+                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.mobile}}</td>
+            <td><span *ngFor="let address of employee.addresses">=> {{address.street}} {{address.city}}
+                    {{address.state}}
+                    {{address.postcode}} <br></span></td>
+            <td>{{employee.department}}</td>
+            <td>
+                <a routerLink='/employee/edit/{{employee.id}}' style="cursor: pointer"><i
+                        class="glyphicon glyphicon-pencil" style="font-size: 20px; color: green"></i></a>
+                &nbsp;
+                <a (click)="deleteEmployee(employee.id)" style="cursor: pointer"><i class="glyphicon glyphicon-trash"
+                        style="font-size: 20px; color: red"></i></a>
+            </td>
+        </tr>
+    </table>
+    <!-- <br><br>
+    <ul class="pagination">
+        <li><a href="#0">&lt;</a></li>
+        <li><a class="active" href="#0">1</a></li>
+        <li><a href="#0">2</a></li>
+        <li><a href="#0">&gt;</a></li>
+    </ul> -->
+    <br><br>
+</mat-card>
