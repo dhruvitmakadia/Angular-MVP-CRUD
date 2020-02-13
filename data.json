@@ -154,30 +154,6 @@
       "hireDate": "2020-02-11",
       "permanentEmployee": false,
       "id": 8
-    },
-    {
-      "name": "aaaa",
-      "email": "aaa",
-      "mobile": "1111111111",
-      "addresses": [
-        {
-          "street": "aa",
-          "city": "aa",
-          "state": "aa",
-          "postcode": "aa"
-        },
-        {
-          "street": "aa",
-          "city": "aa",
-          "state": "aa",
-          "postcode": "aa"
-        }
-      ],
-      "gender": "female",
-      "department": "Developer",
-      "hireDate": "2020-02-04",
-      "permanentEmployee": false,
-      "id": 9
     }
   ]
 }

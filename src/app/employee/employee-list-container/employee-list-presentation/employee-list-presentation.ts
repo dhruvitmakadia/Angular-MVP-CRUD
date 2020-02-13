@@ -1,26 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../employee.model';
-import { EmployeeListPresenterService } from '../employee-list-presenter/employee-list-presenter';
-import { Router } from '@angular/router';
+import { EmployeeListPresenter } from '../employee-list-presenter/employee-list-presenter';
 
 @Component({
   selector: 'app-employee-list-presentation-ui',
   templateUrl: './employee-list-presentation.html',
   styleUrls: ['./employee-list-presentation.scss'],
-  providers: [EmployeeListPresenterService]
+  providers: [EmployeeListPresenter]
 })
-export class EmployeeListPresentationComponent implements OnInit {
-
-  // To store search query
-  public query: string;
-  // To store name of field to sort by default name field
-  public key = 'name';
-  // flag to specify asc/desc
-  public reverse = false;
-
-  constructor(
-    private router: Router
-  ) { }
+export class EmployeeListPresentation implements OnInit {
 
   // get employee data from container component
   @Input() employees: Employee;
@@ -31,10 +19,29 @@ export class EmployeeListPresentationComponent implements OnInit {
   // send field to container component for sort
   @Output() sort = new EventEmitter<string>();
   // send order to container component for sort
-  @Output() order = new EventEmitter<boolean>();
+  @Output() order = new EventEmitter<string>();
+
+  // To store search query
+  public query: string;
+  // To store name of field to sort by default name field
+  public key: string;
+  // Order of data
+  public orderType: string;
+  // ASC/DESC sign flag
+  private reverse: boolean;
+
+  constructor(
+    private employeeListPresenter: EmployeeListPresenter
+  ) {
+    this.query = '';
+    this.orderType = 'asc';
+    this.key = 'name';
+    this.reverse = true;
+  }
 
   ngOnInit() {
-    this.order.emit(this.reverse);
+    this.search.emit(this.query);
+    this.order.emit(this.orderType);
     this.sort.emit(this.key);
   }
 
@@ -42,31 +49,16 @@ export class EmployeeListPresentationComponent implements OnInit {
    * get employee id and emit to container component for delete operation
    * @param id employee id for delete operation
    */
-  deleteEmployee(id: number) {
+  public deleteEmployee(id: number): void {
     if (confirm('Are You Sure To Delete This Record?')) {
       this.delete.emit(id);
     }
   }
 
   /**
-   * To navigate to add form
-   */
-  addEmployee() {
-    this.router.navigate([`employee/add`]);
-  }
-
-  /**
-   * get employee id and navigate to edit form
-   * @param id employee id for edit operation
-   */
-  editEmployee(id: number) {
-    this.router.navigate([`employee/edit/${id}`]);
-  }
-
-  /**
    * send query string to container
    */
-  searchData() {
+  public searchData(): void {
     this.search.emit(this.query);
   }
 
@@ -74,10 +66,11 @@ export class EmployeeListPresentationComponent implements OnInit {
    * take field name and display sort sign according to flag
    * @param key take field name to sort
    */
-  sortData(key: string) {
-    this.key = key;
+  public sortData(key: string): void {
     this.reverse = !this.reverse;
-    this.order.emit(this.reverse);
+    this.key = key;
+    this.orderType = this.employeeListPresenter.order(this.orderType);
+    this.order.emit(this.orderType);
     this.sort.emit(key);
   }
 }

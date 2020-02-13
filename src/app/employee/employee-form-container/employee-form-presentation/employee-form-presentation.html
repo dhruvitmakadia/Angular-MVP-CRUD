@@ -3,7 +3,7 @@
     <div>
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
             <label>Full Name</label>
-            <div *ngIf="ef.name.invalid && (ef.name.dirty || ef.name.touched)" class="error">
+            <div *ngIf="ef.name.invalid && submitted" class="error">
                 <div *ngIf="ef.name.errors.required">
                     Name is required.
                 </div>
@@ -14,20 +14,23 @@
             <input type="text" formControlName="name" placeholder="Your name.." appAutofocus>
 
             <label>Email</label>
-            <div *ngIf="ef.email.invalid && (ef.email.dirty || ef.email.touched)" class="error">
+            <div *ngIf="ef.email.invalid && submitted" class="error">
                 <div *ngIf="ef.email.errors.required">
                     Email is required.
                 </div>
-                <!-- <div *ngIf="ef.email.errors.email">
+                <div *ngIf="ef.email.errors.email">
                     Email must be a valid email address.
-                </div> -->
+                </div>
             </div>
             <input type="text" formControlName="email" placeholder="Your email..">
 
             <label>Mobile</label>
-            <div *ngIf="ef.mobile.invalid && (ef.mobile.dirty || ef.mobile.touched)" class="error">
+            <div *ngIf="ef.mobile.invalid && submitted" class="error">
                 <div *ngIf="ef.mobile.errors.required">
                     Mobile is required.
+                </div>
+                <div *ngIf="ef.mobile.errors.pattern">
+                    Only Digits Allowd.
                 </div>
                 <div *ngIf="ef.mobile.errors.minlength">
                     Mobile Number Is 10 Digit Only.
@@ -36,10 +39,10 @@
                     Mobile Number Is 10 Digit Only.
                 </div>
             </div>
-            <input type="text" formControlName="mobile" placeholder="Your mobile.." appNumberOnly>
+            <input type="text" formControlName="mobile" placeholder="Your mobile..">
 
             <hr>
-            
+
             <div formArrayName="addresses">
                 <div *ngFor="let address of employeeForm.controls.addresses.controls; let i=index">
                     <div>
@@ -53,21 +56,45 @@
                         <div class="row">
                             <div class="column">
                                 <label>Street</label>
+                                <div *ngIf="af.controls[i].get('street').invalid && submitted" class="error">
+                                    <div *ngIf="af.controls[i].get('street').errors.required">
+                                        Street is required.
+                                    </div>
+                                </div>
                                 <input type="text" formControlName="street" placeholder="Your street..">
                             </div>
                             <div class="column">
                                 <label>City</label>
+                                <div *ngIf="af.controls[i].get('city').invalid && submitted" class="error">
+                                    <div *ngIf="af.controls[i].get('city').errors.required">
+                                        City is required.
+                                    </div>
+                                </div>
                                 <input type="text" formControlName="city" placeholder="Your city..">
                             </div>
                         </div>
                         <div class="row">
                             <div class="column">
                                 <label>State</label>
+                                <div *ngIf="af.controls[i].get('state').invalid && submitted" class="error">
+                                    <div *ngIf="af.controls[i].get('state').errors.required">
+                                        State is required.
+                                    </div>
+                                </div>
                                 <input type="text" formControlName="state" placeholder="Your state..">
                             </div>
                             <div class="column">
-                                <label>postcode</label>
-                                <input type="text" formControlName="postcode" placeholder="Your postcode..">
+                                <label>Postcode</label>
+                                <div *ngIf="af.controls[i].get('postcode').invalid && submitted" class="error">
+                                    <div *ngIf="af.controls[i].get('postcode').errors.required">
+                                        Postcode is required.
+                                    </div>
+                                    <div *ngIf="af.controls[i].get('postcode').errors.pattern">
+                                            Only Digits Allowd.
+                                        </div>
+                                </div>
+                                <input type="text" formControlName="postcode" placeholder="Your postcode.."
+                                    appNumberOnly>
                             </div>
                         </div>
                     </div>
@@ -78,23 +105,39 @@
             <hr>
             <label>Gender</label>
             <br>
+            <div *ngIf="ef.gender.invalid && submitted" class="error">
+                <div *ngIf="ef.gender.errors.required">
+                    Gender is required.
+                </div>
+            </div>
             <input type="radio" formControlName="gender" value="male">Male
             <input type="radio" formControlName="gender" value="female">Female
             <input type="radio" formControlName="gender" value="other">Other
             <br><br>
 
             <label>Department</label>
+            <div *ngIf="ef.department.invalid && submitted" class="error">
+                <div *ngIf="ef.department.errors.required">
+                    Department is required.
+                </div>
+            </div>
             <select formControlName="department" placeholder="Department">
+                <option value="">Select Department</option>
                 <option *ngFor='let department of departments' value="{{department}}">{{department}}</option>
             </select>
 
             <label>Hire Date</label>
+            <div *ngIf="ef.hireDate.invalid && submitted" class="error">
+                <div *ngIf="ef.hireDate.errors.required">
+                    Hire Date is required.
+                </div>
+            </div>
             <input type="date" formControlName="hireDate">
 
             <br>
             <input type="checkbox" formControlName="permanentEmployee">Permanent Employee
 
-            <input type="submit" [disabled]="!employeeForm.valid" value="Submit">
+            <input type="submit" value="Submit">
             <input type="reset" value="Clear">
         </form>
     </div>

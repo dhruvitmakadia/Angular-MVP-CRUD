@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EmployeeFormPresenterService } from './employee-form-presenter';
+import { EmployeeFormPresenter } from './employee-form-presenter';
 
-describe('EmployeeFormPresenterService', () => {
+describe('EmployeeFormPresenter', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: EmployeeFormPresenterService = TestBed.get(EmployeeFormPresenterService);
+    const service: EmployeeFormPresenter = TestBed.get(EmployeeFormPresenter);
     expect(service).toBeTruthy();
   });
 });

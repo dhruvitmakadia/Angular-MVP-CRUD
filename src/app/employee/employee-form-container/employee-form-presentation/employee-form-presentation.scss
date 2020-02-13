@@ -10,6 +10,11 @@ input[type="date"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+input[type="text"]:focus,
+select:focus,
+input[type="date"]:focus {
+  box-shadow: 0 0 5px purple;
+}
 
 input[type="submit"] {
   width: 100%;
@@ -50,8 +55,8 @@ input[type="submit"]:disabled {
 }
 
 .error {
-  color: #d8000c;
-  background-color: #ffd2d2;
+  color: red;
+  font-size: 15px;
 }
 .card {
   top: 7%;
@@ -60,6 +65,6 @@ input[type="submit"]:disabled {
   background-color: lightcyan;
   border-radius: 15px;
   border: 1px solid;
-  padding: 10px;
+  padding: 15px;
   box-shadow: 5px 10px rgb(190, 166, 190);
 }
