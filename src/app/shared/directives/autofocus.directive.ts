@@ -7,7 +7,7 @@ export class AutofocusDirective implements AfterContentInit {
 
   @Input() public appAutoFocus: boolean;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef) { }
 
   ngAfterContentInit() {
     setTimeout(() => {

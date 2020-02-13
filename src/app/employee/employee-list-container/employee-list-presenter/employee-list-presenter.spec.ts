@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EmployeeListPresenterService } from './employee-list-presenter';
+import { EmployeeListPresenter } from './employee-list-presenter';
 
-describe('EmployeeListPresenterService', () => {
+describe('EmployeeListPresenter', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: EmployeeListPresenterService = TestBed.get(EmployeeListPresenterService);
+    const service: EmployeeListPresenter = TestBed.get(EmployeeListPresenter);
     expect(service).toBeTruthy();
   });
 });

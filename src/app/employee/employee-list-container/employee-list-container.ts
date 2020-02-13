@@ -2,36 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../employee.model';
 import { EmployeeService } from '../employee.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-list-container',
-  templateUrl: './employee-list-container.html',
-  styles: []
+  templateUrl: './employee-list-container.html'
 })
-export class EmployeeListContainerComponent implements OnInit {
+export class EmployeeListContainer implements OnInit {
 
   // To store employees detail
   public employees$: Observable<Employee[]>;
   // To store sort order type
   public orderAs: string;
+  // To store field name
+  public fieldName: string;
+  // To store search string
+  public searchString: string;
 
   constructor(
-    private api: EmployeeService
+    private api: EmployeeService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this.employees$ = this.api.getEmployees();
+    this.getEmployees();
+  }
+
+  /**
+   * To get Employees Detail
+   */
+  private getEmployees(): void {
+    this.employees$ = this.api.getEmployees(this.searchString, this.fieldName, this.orderAs);
   }
 
   /**
    * get employee id and delete record
    * @param id employee id to delete
    */
-  deleteEmployee(id: number) {
+  public deleteEmployee(id: number): void {
     if (this.api.deleteEmployee(id).subscribe()) {
-      alert('Recored Deleted Successfully...');
-      this.employees$ = this.api.getEmployees();
+      this.snackbar.open('Recored Deleted Successfully...', 'Ok', { duration: 2000 });
+      this.employees$ = this.api.getEmployees(this.searchString, this.fieldName, this.orderAs);
     } else {
+      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
     }
   }
 
@@ -39,27 +52,25 @@ export class EmployeeListContainerComponent implements OnInit {
    * get search string and get searched data
    * @param query search string
    */
-  search(query: string) {
-    this.employees$ = this.api.searchEmployees(query);
+  public search(query: string): void {
+    this.searchString = query;
+    this.getEmployees();
   }
 
   /**
-   * get flag and store in variable
-   * @param order flag to specify sorting order
+   * get order type and store in variable
+   * @param order sorting order type
    */
-  order(order: boolean) {
-    if (order) {
-      this.orderAs = 'desc';
-    } else {
-      this.orderAs = 'asc';
-    }
+  public order(order: string): void {
+    this.orderAs = order;
   }
 
   /**
    * get field name and sort data
    * @param key field name to sort
    */
-  sort(key: string) {
-    this.employees$ = this.api.sortEmployees(key, this.orderAs);
+  public sort(key: string): void {
+    this.fieldName = key;
+    this.getEmployees();
   }
 }

@@ -1,56 +1,58 @@
 import { Injectable } from '@angular/core';
-import { Validators, FormBuilder, FormArray } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Employee } from '../../employee.model';
+import { Validators, FormBuilder, FormArray, FormGroup } from '@angular/forms';
 
 @Injectable()
 
-export class EmployeeFormPresenterService {
+export class EmployeeFormPresenter {
 
   constructor(
     private fb: FormBuilder
   ) { }
 
   // Initiate employee form
-  employeeForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
-    email: ['', Validators.required],
-    mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    addresses: this.fb.array([
-      this.initAddress(),
-    ]),
-    gender: ['', Validators.required],
-    department: ['', Validators.required],
-    hireDate: ['', Validators.required],
-    permanentEmployee: [false]
-  });
-
-  /**
-   * Initiate address form group
-   */
-  initAddress() {
+  public formBuild(): FormGroup {
     return this.fb.group({
-      street: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      postcode: ['', [Validators.required]]
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
+      addresses: this.fb.array([
+        this.initAddress(),
+      ]),
+      gender: ['', Validators.required],
+      department: ['', Validators.required],
+      hireDate: ['', Validators.required],
+      permanentEmployee: [false]
     });
   }
 
   /**
-   * To add more address to form
+   * Initiate address form group
    */
-  addAddress() {
-    const control = this.employeeForm.controls.addresses as FormArray;
+  public initAddress(): FormGroup {
+    return this.fb.group({
+      street: ['', Validators.required],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      postcode: ['', [Validators.required, Validators.pattern('[0-9]*')]]
+    });
+  }
+
+  /**
+   * get grom group and add new address
+   * @param form formgroup of current form
+   */
+  public addAddress(form: FormGroup): void {
+    const control = form.controls.addresses as FormArray;
     control.push(this.initAddress());
   }
 
   /**
-   * To remove address from form
-   * @param i index of address contrrol to remove
+   * get form group and remove address from form
+   * @param index index of address contrrol to remove
+   * @param form formgroup of current form
    */
-  removeAddress(i: number) {
-    const control = this.employeeForm.controls.addresses as FormArray;
-    control.removeAt(i);
+  public removeAddress(index: number, form: FormGroup): void {
+    const control = form.controls.addresses as FormArray;
+    control.removeAt(index);
   }
 }

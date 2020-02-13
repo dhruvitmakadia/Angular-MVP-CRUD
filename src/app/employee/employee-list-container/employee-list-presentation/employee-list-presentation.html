@@ -1,6 +1,6 @@
 <mat-card class="card">
     <mat-card-title style="text-align: center; font-size: 35px;">Employee List</mat-card-title>
-    <a mat-raised-button (click)='addEmployee()' class="button"><i class="glyphicon glyphicon-plus"></i>
+    <a mat-raised-button routerLink='/employee/add' class="button"><i class="glyphicon glyphicon-plus"></i>
         <b> Add New</b></a>
     <div class="wrap">
         <input id="search" [(ngModel)]='query' (keyup)='searchData()' type="text" placeholder="What're we looking for ?"
@@ -40,8 +40,8 @@
                     {{address.postcode}} <br></span></td>
             <td>{{employee.department}}</td>
             <td>
-                <a (click)="editEmployee(employee.id)" style="cursor: pointer"><i class="glyphicon glyphicon-pencil"
-                        style="font-size: 20px; color: green"></i></a>
+                <a routerLink='/employee/edit/{{employee.id}}' style="cursor: pointer"><i
+                        class="glyphicon glyphicon-pencil" style="font-size: 20px; color: green"></i></a>
                 &nbsp;
                 <a (click)="deleteEmployee(employee.id)" style="cursor: pointer"><i class="glyphicon glyphicon-trash"
                         style="font-size: 20px; color: red"></i></a>

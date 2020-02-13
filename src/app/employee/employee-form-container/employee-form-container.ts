@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../employee.model';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../employee.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-form-container',
   templateUrl: './employee-form-container.html',
-  styles: []
 })
-export class EmployeeFormContainerComponent implements OnInit {
+export class EmployeeFormContainer implements OnInit {
 
   // To store departments data
   public departments$: Observable<Array<string>>;
@@ -21,7 +21,8 @@ export class EmployeeFormContainerComponent implements OnInit {
   constructor(
     private api: EmployeeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -36,12 +37,12 @@ export class EmployeeFormContainerComponent implements OnInit {
    * get data and add new record
    * @param employee data to add new record
    */
-  addEmployee(employee: Employee) {
+  public addEmployee(employee: Employee): void {
     if (this.api.addEmployee(employee).subscribe()) {
-      alert('New Record Added Successfully...');
+      this.snackbar.open('New Record Added Successfully...', 'Ok', { duration: 2000 });
       this.router.navigate(['employee/list']);
     } else {
-      alert('Something Went Wrong Please Try Again...');
+      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
     }
   }
 
@@ -49,12 +50,12 @@ export class EmployeeFormContainerComponent implements OnInit {
    * get data and update that record
    * @param employee data to update record
    */
-  updateEmployee(employee: Employee) {
+  public updateEmployee(employee: Employee): void {
     if (this.api.updateEmployee(this.id, employee).subscribe()) {
-      alert('Record Updated Successfully...');
+      this.snackbar.open('Record Updated Successfully...', 'Ok', { duration: 2000 });
       this.router.navigate(['employee/list']);
     } else {
-      alert('Something Went Wrong Please Try Again...');
+      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
     }
   }
 }

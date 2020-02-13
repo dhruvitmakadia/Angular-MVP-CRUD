@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeListContainerComponent } from './employee-list-container/employee-list-container';
-import { EmployeeFormContainerComponent } from './employee-form-container/employee-form-container';
+import { EmployeeListContainer } from './employee-list-container/employee-list-container';
+import { EmployeeFormContainer } from './employee-form-container/employee-form-container';
 
 
 const routes: Routes = [
   {
     path: 'employee/list',
-    component: EmployeeListContainerComponent
+    component: EmployeeListContainer
   },
   {
     path: 'employee/add',
-    component: EmployeeFormContainerComponent
+    component: EmployeeFormContainer
   },
   {
     path: 'employee/edit/:id',
-    component: EmployeeFormContainerComponent
+    component: EmployeeFormContainer
   },
   {
     path: '',
