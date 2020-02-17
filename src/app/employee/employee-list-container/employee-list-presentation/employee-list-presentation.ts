@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Employee } from '../../employee.model';
+import { Employee, Order } from '../../employee.model';
 import { EmployeeListPresenter } from '../employee-list-presenter/employee-list-presenter';
 
 @Component({
@@ -13,13 +13,11 @@ export class EmployeeListPresentation implements OnInit {
   // get employee data from container component
   @Input() employees: Employee;
   // send employee id to container component for delete
-  @Output() delete = new EventEmitter<number>();
+  @Output() delete: EventEmitter<number>;
   // send search string to container component for search
-  @Output() search = new EventEmitter<string>();
+  @Output() search: EventEmitter<string>;
   // send field to container component for sort
-  @Output() sort = new EventEmitter<string>();
-  // send order to container component for sort
-  @Output() order = new EventEmitter<string>();
+  @Output() sort: EventEmitter<Order>;
 
   // To store search query
   public query: string;
@@ -33,6 +31,9 @@ export class EmployeeListPresentation implements OnInit {
   constructor(
     private employeeListPresenter: EmployeeListPresenter
   ) {
+    this.delete = new EventEmitter<number>();
+    this.search = new EventEmitter<string>();
+    this.sort = new EventEmitter<Order>();
     this.query = '';
     this.orderType = 'asc';
     this.key = 'name';
@@ -41,8 +42,7 @@ export class EmployeeListPresentation implements OnInit {
 
   ngOnInit() {
     this.search.emit(this.query);
-    this.order.emit(this.orderType);
-    this.sort.emit(this.key);
+    this.sort.emit({ key: this.key, order: this.orderType });
   }
 
   /**
@@ -70,7 +70,6 @@ export class EmployeeListPresentation implements OnInit {
     this.reverse = !this.reverse;
     this.key = key;
     this.orderType = this.employeeListPresenter.order(this.orderType);
-    this.order.emit(this.orderType);
-    this.sort.emit(key);
+    this.sort.emit({ key: this.key, order: this.orderType });
   }
 }

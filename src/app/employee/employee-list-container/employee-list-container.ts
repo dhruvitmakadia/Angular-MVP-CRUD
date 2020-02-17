@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from '../employee.model';
+import { Employee, Order } from '../employee.model';
 import { EmployeeService } from '../employee.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -40,12 +40,14 @@ export class EmployeeListContainer implements OnInit {
    * @param id employee id to delete
    */
   public deleteEmployee(id: number): void {
-    if (this.api.deleteEmployee(id).subscribe()) {
-      this.snackbar.open('Recored Deleted Successfully...', 'Ok', { duration: 2000 });
-      this.employees$ = this.api.getEmployees(this.searchString, this.fieldName, this.orderAs);
-    } else {
-      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
-    }
+    this.api.deleteEmployee(id).subscribe(data => {
+      if (data) {
+        this.snackbar.open('Recored Deleted Successfully...', 'Ok', { duration: 2000 });
+        this.employees$ = this.api.getEmployees(this.searchString, this.fieldName, this.orderAs);
+      } else {
+        this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
+      }
+    });
   }
 
   /**
@@ -58,19 +60,12 @@ export class EmployeeListContainer implements OnInit {
   }
 
   /**
-   * get order type and store in variable
-   * @param order sorting order type
-   */
-  public order(order: string): void {
-    this.orderAs = order;
-  }
-
-  /**
    * get field name and sort data
-   * @param key field name to sort
+   * @param value object of sort field and asc/desc type
    */
-  public sort(key: string): void {
-    this.fieldName = key;
+  public sort(value: Order): void {
+    this.fieldName = value.key;
+    this.orderAs = value.order;
     this.getEmployees();
   }
 }
