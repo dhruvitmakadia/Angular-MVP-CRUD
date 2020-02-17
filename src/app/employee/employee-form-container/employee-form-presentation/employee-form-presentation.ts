@@ -30,9 +30,9 @@ export class EmployeeFormPresentation implements OnInit {
   }
 
   // send data to container component for add
-  @Output() add = new EventEmitter<Employee>();
+  @Output() add: EventEmitter<Employee>;
   // send data to container component for update
-  @Output() update = new EventEmitter<Employee>();
+  @Output() update: EventEmitter<Employee>;
 
   // Store employee form group
   public employeeForm: FormGroup;
@@ -46,6 +46,8 @@ export class EmployeeFormPresentation implements OnInit {
     private employeeFormPresenter: EmployeeFormPresenter,
     private snackbar: MatSnackBar
   ) {
+    this.add = new EventEmitter<Employee>();
+    this.update = new EventEmitter<Employee>();
     this.employeeForm = this.employeeFormPresenter.formBuild();
     this.submitted = false;
   }

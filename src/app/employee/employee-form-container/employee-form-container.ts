@@ -38,12 +38,14 @@ export class EmployeeFormContainer implements OnInit {
    * @param employee data to add new record
    */
   public addEmployee(employee: Employee): void {
-    if (this.api.addEmployee(employee).subscribe()) {
-      this.snackbar.open('New Record Added Successfully...', 'Ok', { duration: 2000 });
-      this.router.navigate(['employee/list']);
-    } else {
-      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
-    }
+    this.api.addEmployee(employee).subscribe(data => {
+      if (data) {
+        this.snackbar.open('New Record Added Successfully...', 'Ok', { duration: 2000 });
+        this.router.navigate(['employee/list']);
+      } else {
+        this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
+      }
+    });
   }
 
   /**
@@ -51,11 +53,13 @@ export class EmployeeFormContainer implements OnInit {
    * @param employee data to update record
    */
   public updateEmployee(employee: Employee): void {
-    if (this.api.updateEmployee(this.id, employee).subscribe()) {
-      this.snackbar.open('Record Updated Successfully...', 'Ok', { duration: 2000 });
-      this.router.navigate(['employee/list']);
-    } else {
-      this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
-    }
+    this.api.updateEmployee(this.id, employee).subscribe(data => {
+      if (data) {
+        this.snackbar.open('Record Updated Successfully...', 'Ok', { duration: 2000 });
+        this.router.navigate(['employee/list']);
+      } else {
+        this.snackbar.open('Something Went Wrong Please Try Again...', 'Ok', { duration: 2000 });
+      }
+    });
   }
 }

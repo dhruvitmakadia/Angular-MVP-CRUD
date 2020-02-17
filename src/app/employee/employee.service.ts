@@ -21,7 +21,10 @@ export class EmployeeService {
   }
 
   /**
-   * To get all employee data
+   * get all employees data
+   * @param query search string
+   * @param key field name to sort
+   * @param order asc/desc order type
    */
   public getEmployees(query: string, key: string, order: string): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(`${this.API_EMPLOYEE}?q=${query}&_sort=${key}&_order=${order}`);

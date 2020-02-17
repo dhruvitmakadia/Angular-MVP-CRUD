@@ -16,3 +16,8 @@ export class Address {
     state: string;
     passcode: number;
 }
+
+export class Order {
+    key: string;
+    order: string;
+}
