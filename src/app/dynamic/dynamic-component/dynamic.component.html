@@ -1,0 +1,9 @@
+<h1>Dynamic-Tasks</h1>
+<nav class="container">
+  <a (click)="createDirective()" >Directives<br>(Component Factory)</a>
+  <a (click)="createPipe()" >Pipes<br>(Angular-CDK Portal)</a> 
+  <a (click)="createOverlay()" >Overlay<br>(Angular-CDK)</a> 
+</nav>
+<ng-container #directive [cdkPortalOutlet]="selectedPortal"></ng-container>
+
+

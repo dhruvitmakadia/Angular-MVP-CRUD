@@ -5,7 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule),
+    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
+  },
+  {
+    path: 'dynamic',
+    loadChildren: () => import('./dynamic/dynamic.module').then(m => m.DynamicModule)
   }
 ];
 
