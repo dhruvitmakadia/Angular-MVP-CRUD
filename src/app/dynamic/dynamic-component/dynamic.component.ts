@@ -44,14 +44,13 @@ export class DynamicComponent implements OnInit, OnDestroy {
 
     config.positionStrategy = this.overlay.position()
       .global()
-      .left(`25%`)
-      .top(`25%`);
-
+      .centerHorizontally()
+      .centerVertically();
     config.hasBackdrop = true;
 
     const overlayRef = this.overlay.create(config);
-    const userProfilePortal = new ComponentPortal(PipeContainer);
-    overlayRef.attach(userProfilePortal);
+    const pipePortal = new ComponentPortal(PipeContainer);
+    overlayRef.attach(pipePortal);
 
     overlayRef.backdropClick().subscribe(() => {
       overlayRef.dispose();

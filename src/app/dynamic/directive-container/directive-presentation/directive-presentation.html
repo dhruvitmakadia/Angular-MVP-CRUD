@@ -1,1 +1,28 @@
-<p>directive-presentation works!</p>
+<div class='container'>
+<table>
+    <tr>
+        <th (click)="sortData('name')">Full Name
+            <span class="glyphicon sort-icon" *ngIf="key =='name'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sortData('email')">Email
+            <span class="glyphicon sort-icon" *ngIf="key =='email'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sortData('mobile')">Mobile
+            <span class="glyphicon sort-icon" *ngIf="key =='mobile'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sortData('department')">Department
+            <span class="glyphicon sort-icon" *ngIf="key =='department'"
+                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+    </tr>
+    <tr *ngFor="let employee of employees">
+        <td>{{employee.name}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.mobile}}</td>
+        <td>{{employee.department}}</td>
+    </tr>
+</table>
+</div>
