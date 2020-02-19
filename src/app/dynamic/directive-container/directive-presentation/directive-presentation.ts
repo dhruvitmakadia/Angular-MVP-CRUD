@@ -9,9 +9,18 @@ import { DirectivePresenter } from '../directive-presenter/directive-presenter';
 })
 export class DirectivePresentation implements OnInit {
 
-  constructor() { }
+  reverse: boolean;
+  key: string;
+  constructor() {
+    this.reverse = true;
+    this.key = 'Full Name';
+  }
 
   ngOnInit() {
   }
 
+  public sortData(key: string) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 }

@@ -13,12 +13,13 @@ import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 })
 export class DynamicComponent implements OnInit, OnDestroy {
 
+  // Get reference from tamplate
   @ViewChild('directive', { read: ViewContainerRef, static: true }) directiveContent: ViewContainerRef;
 
-  componentRef: ComponentRef<DirectiveContainer>;
-  selectedPortal: Portal<any>;
-  componentPortal: ComponentPortal<PipeContainer>;
-  nextPosition: number;
+  // Component reference of Directive container
+  private componentRef: ComponentRef<DirectiveContainer>;
+  // Component portal for Pipe container
+  public componentPortal: ComponentPortal<DirectiveContainer>;
 
   constructor(private resolver: ComponentFactoryResolver, private overlay: Overlay) {
   }
@@ -27,19 +28,18 @@ export class DynamicComponent implements OnInit, OnDestroy {
 
   }
 
-  createDirective() {
+  public createDirective() {
     this.directiveContent.clear();
     const factoryComponent = this.resolver.resolveComponentFactory(DirectiveContainer);
     this.componentRef = this.directiveContent.createComponent(factoryComponent);
   }
 
-  createPipe() {
+  public createPipe() {
     this.directiveContent.clear();
     this.componentPortal = new ComponentPortal(PipeContainer);
-    this.selectedPortal = this.componentPortal;
   }
 
-  createOverlay() {
+  public createOverlay() {
     const config = new OverlayConfig();
 
     config.positionStrategy = this.overlay.position()
@@ -49,8 +49,8 @@ export class DynamicComponent implements OnInit, OnDestroy {
     config.hasBackdrop = true;
 
     const overlayRef = this.overlay.create(config);
-    const pipePortal = new ComponentPortal(PipeContainer);
-    overlayRef.attach(pipePortal);
+    const portal = new ComponentPortal(DirectiveContainer);
+    overlayRef.attach(portal);
 
     overlayRef.backdropClick().subscribe(() => {
       overlayRef.dispose();

@@ -10,6 +10,9 @@ import { PipePresentation } from './pipe-container/pipe-presentation/pipe-presen
 
 import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { SortDirective } from './directives/sort.directive';
+import { EmojiPipe } from './pipes/emoji.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import { OverlayModule } from '@angular/cdk/overlay';
     DirectiveContainer,
     PipeContainer,
     DirectivePresentation,
-    PipePresentation
+    PipePresentation,
+    SortDirective,
+    EmojiPipe
   ],
   imports: [
     CommonModule,
     DynamicRoutingModule,
     PortalModule,
-    OverlayModule
+    OverlayModule,
+    FormsModule
   ],
   entryComponents: [
     DirectiveContainer,

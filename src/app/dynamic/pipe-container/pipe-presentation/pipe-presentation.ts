@@ -9,7 +9,10 @@ import { PipePresenter } from '../pipe-presenter/pipe-presenter';
 })
 export class PipePresentation implements OnInit {
 
-  constructor() { }
+  showEmoji: string;
+  constructor() {
+    this.showEmoji = 'happy';
+  }
 
   ngOnInit() {
   }

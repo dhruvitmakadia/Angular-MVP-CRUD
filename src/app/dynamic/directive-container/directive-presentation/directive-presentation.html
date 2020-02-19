@@ -1,28 +1,58 @@
 <div class='container'>
-<table>
-    <tr>
-        <th (click)="sortData('name')">Full Name
-            <span class="glyphicon sort-icon" *ngIf="key =='name'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-        </th>
-        <th (click)="sortData('email')">Email
-            <span class="glyphicon sort-icon" *ngIf="key =='email'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-        </th>
-        <th (click)="sortData('mobile')">Mobile
-            <span class="glyphicon sort-icon" *ngIf="key =='mobile'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-        </th>
-        <th (click)="sortData('department')">Department
-            <span class="glyphicon sort-icon" *ngIf="key =='department'"
-                [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-        </th>
-    </tr>
-    <tr *ngFor="let employee of employees">
-        <td>{{employee.name}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.mobile}}</td>
-        <td>{{employee.department}}</td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <th (click)="sortData('Full Name')" appSort [fieldName]="key" [sortFlag]="reverse">Full Name </th>
+            <th (click)="sortData('Email')" appSort [fieldName]="key" [sortFlag]="reverse">Email</th>
+            <th (click)="sortData('Mobile')" appSort [fieldName]="key" [sortFlag]="reverse">Mobile </th>
+            <th (click)="sortData('Department')" appSort [fieldName]="key" [sortFlag]="reverse">Department </th>
+        </tr>
+        <tr>
+            <td>Dhruvit</td>
+            <td>dhruvit@gmail.com</td>
+            <td>8754693254</td>
+            <td>Developer</td>
+        </tr>
+        <tr>
+            <td>Amit</td>
+            <td>amit@gmail.com</td>
+            <td>8458785243</td>
+            <td>Software Engineer</td>
+        </tr>
+        <tr>
+            <td>Kiran</td>
+            <td>kiran@gmail.com</td>
+            <td>7878965874</td>
+            <td>Accountant</td>
+        </tr>
+        <tr>
+            <td>Bhargav</td>
+            <td>bhargav@gmail.com</td>
+            <td>8877965478</td>
+            <td>Software Engineer</td>
+        </tr>
+        <tr>
+            <td>Aastha</td>
+            <td>aastha@gmail.com</td>
+            <td>8754693214</td>
+            <td>Developer</td>
+        </tr>
+        <tr>
+            <td>Tapas</td>
+            <td>tapas@gmail.com</td>
+            <td>9856471236</td>
+            <td>Developer</td>
+        </tr>
+        <tr>
+            <td>Shiv</td>
+            <td>shiv@gmail.com</td>
+            <td>7458963214</td>
+            <td>Software Engineer</td>
+        </tr>
+        <tr>
+            <td>Samip</td>
+            <td>samip@gmail.com</td>
+            <td>9658745632</td>
+            <td>Accountant</td>
+        </tr>
+    </table>
 </div>
