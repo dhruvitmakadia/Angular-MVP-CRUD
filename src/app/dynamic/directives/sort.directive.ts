@@ -18,9 +18,9 @@ export class SortDirective {
   private sort() {
     console.log(this.fieldName);
     if (this.sortFlag) {
-      this.element.nativeElement.innerHTML = `${this.fieldName} <span class="glyphicon glyphicon-download"></span>`;
+      this.element.nativeElement.innerHTML = `<span class="glyphicon glyphicon-arrow-down"></span>`;
     } else {
-      this.element.nativeElement.innerHTML = `${this.fieldName} <span class="glyphicon glyphicon-upload"></span>`;
+      this.element.nativeElement.innerHTML = `<span class="glyphicon glyphicon-arrow-up"></span>`;
     }
   }
 }

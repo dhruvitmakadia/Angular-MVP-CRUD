@@ -1,10 +1,26 @@
 <div class='container'>
     <table>
         <tr>
-            <th (click)="sortData('Full Name')" appSort [fieldName]="key" [sortFlag]="reverse">Full Name </th>
-            <th (click)="sortData('Email')" appSort [fieldName]="key" [sortFlag]="reverse">Email</th>
-            <th (click)="sortData('Mobile')" appSort [fieldName]="key" [sortFlag]="reverse">Mobile </th>
-            <th (click)="sortData('Department')" appSort [fieldName]="key" [sortFlag]="reverse">Department </th>
+            <th (click)="sortData('Full Name')">Full Name
+                <span appSort [fieldName]="key" [sortFlag]="reverse">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </span>
+            </th>
+            <th (click)="sortData('Email')">Email
+                <span appSort [fieldName]="key" [sortFlag]="reverse">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </span>
+            </th>
+            <th (click)="sortData('Mobile')">Mobile
+                <span appSort [fieldName]="key" [sortFlag]="reverse">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </span>
+            </th>
+            <th (click)="sortData('Department')">Department
+                <span appSort [fieldName]="key" [sortFlag]="reverse">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </span>
+            </th>
         </tr>
         <tr>
             <td>Dhruvit</td>

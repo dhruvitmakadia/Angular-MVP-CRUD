@@ -10,6 +10,7 @@ import { PipePresenter } from '../pipe-presenter/pipe-presenter';
 export class PipePresentation implements OnInit {
 
   showEmoji: string;
+  myText: string;
   constructor() {
     this.showEmoji = 'happy';
   }

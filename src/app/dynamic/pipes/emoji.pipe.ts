@@ -14,5 +14,4 @@ export class EmojiPipe implements PipeTransform {
       return '🤬';
     }
   }
-
 }

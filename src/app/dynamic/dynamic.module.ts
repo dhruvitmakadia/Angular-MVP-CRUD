@@ -13,6 +13,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { SortDirective } from './directives/sort.directive';
 import { EmojiPipe } from './pipes/emoji.pipe';
 import { FormsModule } from '@angular/forms';
+import { PluralPipe } from './pipes/plural.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     DirectivePresentation,
     PipePresentation,
     SortDirective,
-    EmojiPipe
+    EmojiPipe,
+    PluralPipe
   ],
   imports: [
     CommonModule,

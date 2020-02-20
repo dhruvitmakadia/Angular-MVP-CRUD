@@ -3,7 +3,7 @@ export class Employee {
     name: string;
     email: string;
     mobile: number;
-    addresses: Array<any>;
+    addresses: Array<Address>;
     gender: string;
     department: string;
     hireDate: Date;

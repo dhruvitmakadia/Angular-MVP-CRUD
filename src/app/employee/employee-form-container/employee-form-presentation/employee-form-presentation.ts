@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { Employee } from '../../employee.model';
 import { EmployeeFormPresenter } from '../employee-form-presenter/employee-form-presenter';
-import { FormGroup, FormArray } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-form-presentation-ui',

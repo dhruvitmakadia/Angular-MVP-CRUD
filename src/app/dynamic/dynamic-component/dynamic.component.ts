@@ -40,6 +40,7 @@ export class DynamicComponent implements OnInit, OnDestroy {
   }
 
   public createOverlay() {
+    this.directiveContent.clear();
     const config = new OverlayConfig();
 
     config.positionStrategy = this.overlay.position()
@@ -49,7 +50,7 @@ export class DynamicComponent implements OnInit, OnDestroy {
     config.hasBackdrop = true;
 
     const overlayRef = this.overlay.create(config);
-    const portal = new ComponentPortal(DirectiveContainer);
+    const portal = new ComponentPortal(PipeContainer);
     overlayRef.attach(portal);
 
     overlayRef.backdropClick().subscribe(() => {

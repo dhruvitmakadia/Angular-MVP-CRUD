@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Employee, Order } from '../../employee.model';
 import { EmployeeListPresenter } from '../employee-list-presenter/employee-list-presenter';
-
 @Component({
   selector: 'app-employee-list-presentation-ui',
   templateUrl: './employee-list-presentation.html',
