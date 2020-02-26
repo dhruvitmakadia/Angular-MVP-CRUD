@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { debounceTime, map } from 'rxjs/operators';
 import { Employee, Order } from '../../employee.model';
 import { EmployeeListPresenter } from '../employee-list-presenter/employee-list-presenter';
+import { fromEvent } from 'rxjs';
+
 @Component({
   selector: 'app-employee-list-presentation-ui',
   templateUrl: './employee-list-presentation.html',
@@ -27,6 +30,8 @@ export class EmployeeListPresentation implements OnInit {
   public orderType: string;
   // ASC/DESC sign flag
   private reverse: boolean;
+  // To store prevoius search query
+  public tempQuery: string;
 
   constructor(
     private employeeListPresenter: EmployeeListPresenter
@@ -43,6 +48,9 @@ export class EmployeeListPresentation implements OnInit {
   ngOnInit() {
     this.search.emit(this.query);
     this.sort.emit({ key: this.key, order: this.orderType });
+    const searchBox = document.getElementById('search');
+    const keyup$ = fromEvent(searchBox, 'keyup');
+    keyup$.pipe(map((i: any) => i.currentTarget.value), debounceTime(1500)).subscribe(() => this.search.emit(this.query));
   }
 
   /**
@@ -55,12 +63,6 @@ export class EmployeeListPresentation implements OnInit {
     }
   }
 
-  /**
-   * send query string to container
-   */
-  public searchData(): void {
-    this.search.emit(this.query);
-  }
 
   /**
    * take field name and display sort sign according to flag
